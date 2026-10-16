@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#100a14" />
+  <meta name="description" content="Find horror movies that match your mood, scare level, and viewing preferences." />
+  <title>What Should I Fear Tonight?</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" type="module"></script>
+</head>
+
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">YOUR PERSONAL HORROR GUIDE</p>
+      <h1>What Should I Fear Tonight? <span aria-hidden="true">👻</span></h1>
+      <p>Tell me your horror mood. I'll find the movies that match your nightmares.</p>
+    </header>
+
+    <section class="quiz" aria-labelledby="quiz-heading">
+      <h2 id="quiz-heading">Set the mood</h2>
+
+      <label for="subgenre">Subgenre</label>
+      <select id="subgenre"></select>
+
+      <label for="mood">Mood</label>
+      <select id="mood">
+        <option value="fun">Fun / self-aware</option>
+        <option value="tense">Tense</option>
+        <option value="slow-burn">Slow burn</option>
+        <option value="disturbing">Disturbing</option>
+        <option value="emotional">Emotional</option>
+        <option value="fast-paced">Fast-paced</option>
+      </select>
+
+      <label for="scare-level">
+        Desired scare level: <span id="scare-value">7</span>/10
+      </label>
+      <input id="scare-level" type="range" min="1" max="10" value="7" />
+
+      <label for="gore-level">
+        Maximum gore: <span id="gore-value">5</span>/10
+      </label>
+      <input id="gore-level" type="range" min="1" max="10" value="5" />
+
+      <label for="max-runtime">
+        Maximum runtime: <span id="runtime-value">120</span> minutes
+      </label>
+      <input id="max-runtime" type="range" min="60" max="180" step="5" value="120" />
+
+      <label class="checkbox-row" for="subtitles-ok">
+        <input id="subtitles-ok" type="checkbox" />
+        Subtitles are okay
+      </label>
+
+      <fieldset class="content-filters">
+        <legend>Content to Avoid</legend>
+        <p class="content-filter-notice">
+          These filters cover selected content categories only. Content information may be incomplete, and these filters cannot guarantee that a film is free of potentially upsetting material.
+        </p>
+        <label class="checkbox-row content-unknown-toggle" for="exclude-unknown-content">
+          <input id="exclude-unknown-content" type="checkbox" checked />
+          Exclude unknown/unassessed content
+        </label>
+        <p id="unknown-content-notice" class="content-filter-notice" hidden>
+          Unknown or unassessed content may appear in recommendations when this option is off. Movies with missing or invalid category statuses remain excluded.
+        </p>
+        <div id="content-categories" class="content-categories"></div>
+        <p id="content-preference-status" class="hint status-message" role="alert" hidden></p>
+        <p id="content-data-status" class="hint status-message" role="alert" hidden></p>
+      </fieldset>
+
+      <button id="recommend-button" type="button" disabled>Find My Movie</button>
+      <p id="database-status" class="hint" role="alert" hidden></p>
+      <p class="hint">
+        Runtime and gore are strict limits; movies without ratings for either are excluded.
+        Movies marked as requiring subtitles are excluded unless subtitles are allowed.
+      </p>
+    </section>
+
+    <section
+      id="results"
+      class="results hidden"
+      aria-live="polite"
+      aria-label="Movie recommendations"
+    ></section>
+
+    <section class="history" aria-labelledby="history-heading">
+      <h2 id="history-heading">Your saved choices</h2>
+      <p id="history-text">No movies rated yet.</p>
+      <button id="clear-history" class="secondary" type="button">
+        Clear saved choices
+      </button>
+    </section>
+
+    <footer>
+      <p>Choose wisely. Sleep is optional. 🌙</p>
+    </footer>
+  </main>
+</body>
+</html>
